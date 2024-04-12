@@ -10,10 +10,15 @@ import java.util.Optional;
 
 public class PersonDaoImpl implements PersonDao {
 
-    private List<Person> storage = new ArrayList<>();
+
+
+    private List<Person> personCollection;
+
     //Constructor
-    public PersonDaoImpl(List<Person> storage, int currentId) {
-        this.storage = storage;
+
+
+    public PersonDaoImpl() {
+        this.personCollection = new ArrayList<>();
     }
 
     @Override
@@ -24,7 +29,7 @@ public class PersonDaoImpl implements PersonDao {
         person.setId(currentId);
         Optional<Person> personOptional = findById(person.getId());
         if (personOptional.isPresent()) throw new IllegalArgumentException("Person Id is duplicate");
-        storage.add(person);
+        personCollection.add(person);
         return person;
 
     }
@@ -32,7 +37,7 @@ public class PersonDaoImpl implements PersonDao {
     //findById: returns single Person.class object
     @Override
     public Optional<Person> findById(int id) {
-        for (Person person : storage) {
+        for (Person person : personCollection) {
             if (person.getId() == id) {
                 return Optional.of(person);
             }
@@ -42,7 +47,7 @@ public class PersonDaoImpl implements PersonDao {
     //findByEmail: returns single Person.class object
     @Override
     public Optional<Person> findByEmail(String email) {
-        for (Person person : storage) {
+        for (Person person : personCollection) {
             if (person.getEmail() == email) {
                 return Optional.of(person);
             }
@@ -52,14 +57,14 @@ public class PersonDaoImpl implements PersonDao {
     //findAll: returns all Person.class objects
     @Override
     public List<Person> findAll() {
-        return new ArrayList<>(storage);
+        return new ArrayList<>(personCollection);
     }
 
     @Override
     public boolean remove(int id) {
         Optional<Person> personOptional = findById(id);
         if (!personOptional.isPresent()) return false;
-        storage.remove(personOptional.get());
+        personCollection.remove(personOptional.get());
         return true;
 
     }
