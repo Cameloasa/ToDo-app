@@ -12,7 +12,7 @@ public interface PersonDao {
 
     Optional<Person> findById(int id);//findById: returns single Person.class object
     Optional<Person> findByEmail(String email);//findById: returns single Person.class object
-    List<Person> findAll();//findAll: returns all Person.class objects
+    List <Person> findAll();//findAll: returns all Person.class objects
     boolean remove(int id);//remove: remove one Person.class object from collection
 
 
