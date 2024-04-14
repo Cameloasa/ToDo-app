@@ -1,6 +1,7 @@
 package se.lexicon.data.impl;
 
 import se.lexicon.data.TodoItemTaskDao;
+import se.lexicon.model.TodoItem;
 import se.lexicon.model.TodoItemTask;
 
 import java.util.ArrayList;
@@ -9,10 +10,10 @@ import java.util.List;
 
 public class TodoItemTaskDaoImpl implements TodoItemTaskDao {
 
-    private Collection<TodoItemTaskDao> todoItemTasks;
+    private final Collection<TodoItemTask> todoItemTasks;
 
-    public TodoItemTask() {
-        todoItemTasks = new ArrayList<>();
+    public TodoItemTaskDaoImpl() {
+       todoItemTasks = new ArrayList<>();
     }
 
     @Override
@@ -22,7 +23,7 @@ public class TodoItemTaskDaoImpl implements TodoItemTaskDao {
             throw new IllegalArgumentException("TodoItemTask cannot be null");
         }
         todoItemTasks.add(todoItemTask);
-        return this;
+        return todoItemTask;
 
     }
 
