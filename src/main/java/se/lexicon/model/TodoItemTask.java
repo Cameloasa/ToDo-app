@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class TodoItemTask {
     //Fields
-    private static int todoItemTaskId = 1;
+  ;
     private int id;
     private boolean assigned;
     private TodoItem todoItem;
@@ -102,8 +102,6 @@ public class TodoItemTask {
         return Objects.hash(id, assigned, todoItem, assignee);
     }
 
-    public static int nextTodoItemTaskId() {
-        return todoItemTaskId++;
-    }
+
 
 }
