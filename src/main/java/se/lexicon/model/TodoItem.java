@@ -1,11 +1,16 @@
 package se.lexicon.model;
 
+import se.lexicon.data.TodoItemDao;
+import sun.util.resources.LocaleData;
+
 import java.time.LocalDate;
+import java.util.List;
 import java.util.Objects;
+import java.util.Optional;
 
 public class TodoItem {
     // Fields
-    private static int todoItemId = 1;
+
     private int id; // representing each To Do element
     private String title ; // ex make your own code, change tires Not allowed to be null
     private String taskDescription; // hold further information
@@ -109,7 +114,7 @@ public class TodoItem {
         return Objects.hash(id, title, taskDescription, deadLine, done, creator);
     }
 
-    public static int nextTodoItemId() {
-        return todoItemId++;
-    }
+
+
+
 }
