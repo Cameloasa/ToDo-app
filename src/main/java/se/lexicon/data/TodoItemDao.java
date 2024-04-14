@@ -2,16 +2,17 @@ package se.lexicon.data;
 
 import se.lexicon.model.Person;
 import se.lexicon.model.TodoItem;
-import sun.util.resources.LocaleData;
+
 
 import java.time.LocalDate;
 import java.util.*;
 
 public interface TodoItemDao {
 
-    TodoItemDao persist(TodoItem todoItem);
-    TodoItem findById(int id);
-    Collection<TodoItem> findAll();
+    TodoItem persist(TodoItem todoItem);
+
+    Optional<TodoItem> findById(int id);
+    List<TodoItem> findAll();
     Collection<TodoItem> findByTitleContains(String title);
     Collection<TodoItem> findByPersonId(int personId);
     Collection<TodoItem> findByDeadlineBefore(LocalDate deadLine);

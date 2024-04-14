@@ -1,10 +1,14 @@
 package se.lexicon.data.impl;
 
 import se.lexicon.data.TodoItemDao;
+import se.lexicon.data.sequencer.PersonIdSequencer;
 import se.lexicon.data.sequencer.TodoItemIdSequencer;
+import se.lexicon.model.Person;
 import se.lexicon.model.TodoItem;
 import java.time.LocalDate;
 import java.util.*;
+import java.util.ArrayList;
+import java.util.List;
 
 
 
@@ -17,27 +21,30 @@ public class TodoItemDaoImpl implements TodoItemDao {
     }
 
     @Override
-    public TodoItemDao persist(TodoItem todoItem) {
-        if (todoItem == null) {
-            throw new IllegalArgumentException("TodoItem cannot be null");
-        }
+    public TodoItem persist(TodoItem todoItem) {
+        if(todoItem == null) throw new IllegalArgumentException("Data is null");
+        int currentId = TodoItemIdSequencer.nextId();
+        todoItem.setId(currentId);
+        Optional<TodoItem> todoItemOptional = Optional.ofNullable(findById(todoItem.getId()));
+        if (todoItemOptional.isPresent()) throw new IllegalArgumentException("Item Id is duplicate");
         todoItems.add(todoItem);
-        return this;
+        return todoItem;
+
 
     }
 
     @Override
-    public TodoItem findById(int id) {
-        for (TodoItem item : todoItems) {
-            if (item.getId() == id) {
-                return item;
+    public Optional<TodoItem> findById(int id) {
+        for (TodoItem todoItem : todoItems) {
+            if (todoItem.getId() == id) {
+                return Optional.of(todoItem);
             }
         }
-        return null;
+        return Optional.empty();
     }
 
     @Override
-    public Collection<TodoItem> findAll() {
+    public List <TodoItem> findAll() {
         return new ArrayList<>(todoItems);
     }
 

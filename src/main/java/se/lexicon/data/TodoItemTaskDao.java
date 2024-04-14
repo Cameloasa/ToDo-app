@@ -1,16 +1,16 @@
 package se.lexicon.data;
 
-import se.lexicon.model.TodoItem;
+import com.sun.tools.javac.util.List;
 import se.lexicon.model.TodoItemTask;
 
-import java.time.LocalDate;
-import java.util.Collection;
+import java.util.Optional;
 
 public interface TodoItemTaskDao {
-    TodoItemTask persist(TodoItemTaskDao todoItemTask);
-    TodoItemTask findById(int id);
-    Collection<TodoItemTask> findByAssignedStatus(boolean assigned);
-    Collection<TodoItemTask> findByPersonId(int id);
-    Collection<TodoItemTask> findAll();
+    TodoItemTask persist(TodoItemTask todoItemTask);
+
+    Optional <TodoItemTask> findById(int id);
+    List<TodoItemTask> findByAssignedStatus(boolean assigned);
+    List<TodoItemTask> findByPersonId(int id);
+    List<TodoItemTask> findAll();
     boolean remove(int id);
 }

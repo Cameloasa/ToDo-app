@@ -1,12 +1,7 @@
 package se.lexicon.model;
 
-import se.lexicon.data.TodoItemDao;
-import sun.util.resources.LocaleData;
-
 import java.time.LocalDate;
-import java.util.List;
 import java.util.Objects;
-import java.util.Optional;
 
 public class TodoItem {
     // Fields
