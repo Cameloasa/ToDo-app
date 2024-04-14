@@ -25,7 +25,7 @@ public class TodoItemDaoImpl implements TodoItemDao {
         if(todoItem == null) throw new IllegalArgumentException("Data is null");
         int currentId = TodoItemIdSequencer.nextId();
         todoItem.setId(currentId);
-        Optional<TodoItem> todoItemOptional = Optional.ofNullable(findById(todoItem.getId()));
+        Optional<TodoItem> todoItemOptional = (findById(todoItem.getId()));
         if (todoItemOptional.isPresent()) throw new IllegalArgumentException("Item Id is duplicate");
         todoItems.add(todoItem);
         return todoItem;

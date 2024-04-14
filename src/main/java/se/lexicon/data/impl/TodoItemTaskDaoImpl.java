@@ -24,7 +24,7 @@ public class TodoItemTaskDaoImpl implements TodoItemTaskDao {
         if(todoItemTask == null) throw new IllegalArgumentException("Data is null");
         int currentId = TodoItemTaskIdSequencer.nextId();
         todoItemTask.setId(currentId);
-        Optional<TodoItemTask> todoItemOptional = Optional.ofNullable(findById(todoItemTask.getId()));
+        Optional<TodoItemTask> todoItemOptional = (findById(todoItemTask.getId()));
         if (todoItemOptional.isPresent()) throw new IllegalArgumentException("Item Id is duplicate");
         todoItemTasks.add(todoItemTask);
         return todoItemTask;
@@ -42,7 +42,7 @@ public class TodoItemTaskDaoImpl implements TodoItemTaskDao {
     }
 
     @Override
-    public List<TodoItemTask> findByAssignedStatus(boolean assigned) {
+    public Collection<TodoItemTask> findByAssignedStatus(boolean assigned) {
         List<TodoItemTask> result = new ArrayList<>();
         for (TodoItemTask task : todoItemTasks) {
             if (task.isAssigned() == assigned) {
@@ -53,7 +53,7 @@ public class TodoItemTaskDaoImpl implements TodoItemTaskDao {
     }
 
     @Override
-    public List<TodoItemTask> findByPersonId(int id) {
+    public Collection<TodoItemTask> findByPersonId(int personId) {
         List<TodoItemTask> result = new ArrayList<>();
         for (TodoItemTask task : todoItemTasks) {
             if (task.getAssignee() != null && task.getAssignee().getId() == personId) {
@@ -64,8 +64,8 @@ public class TodoItemTaskDaoImpl implements TodoItemTaskDao {
     }
 
     @Override
-    public List<TodoItemTask> findAll() {
-        return new ArrayList<>(todoItemTask);
+    public Collection <TodoItemTask> findAll() {
+        return new ArrayList<>(todoItemTasks);
     }
 
     @Override
