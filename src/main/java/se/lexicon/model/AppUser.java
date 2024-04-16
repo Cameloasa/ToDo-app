@@ -4,7 +4,7 @@ import java.util.Objects;
 
 public class AppUser {
     // Fields
-    private static int userId = 1;
+
     private String username;
     private String password;
     private Role role;
@@ -76,8 +76,6 @@ public class AppUser {
         return Objects.equals(username, appUser.username) &&
                 role == appUser.role;
     }
-    public static int nextUserId() {
-        return userId++;
-    }
+
 
 }
