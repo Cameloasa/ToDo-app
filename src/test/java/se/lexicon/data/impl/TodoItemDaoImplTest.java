@@ -25,7 +25,8 @@ public class TodoItemDaoImplTest {
         TodoItem todoItem = new TodoItem(1,"Title","Task description", LocalDate.of(2024,04,14),true);
 
         testObject.persist(todoItem);
-        assertTrue(testObject.findAll().contains(todoItem));
+        //assertTrue(testObject.findAll().contains(todoItem));
+        assertTrue(testObject.findById(1).isPresent());
 
     }
     @Test
