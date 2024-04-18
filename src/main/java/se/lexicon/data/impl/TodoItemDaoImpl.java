@@ -9,7 +9,7 @@ import java.time.LocalDate;
 import java.util.*;
 import java.util.ArrayList;
 import java.util.List;
-
+import java.util.stream.Collectors;
 
 
 public class TodoItemDaoImpl implements TodoItemDao {
@@ -93,22 +93,33 @@ public class TodoItemDaoImpl implements TodoItemDao {
 
     @Override
     public Collection<TodoItem> findByDoneStatus(boolean done) {
-        return null;
+
+        // Create a list to store the matching todoItems
+        List<TodoItem> foundItems = new ArrayList<>();
+
+        // Iterate over each todoItem
+        for (TodoItem item : todoItems) {
+            // Check if the done status of the current item matches the provided status
+            if (item.isDone() == done) {
+                // If it matches, add the item to the foundItems list
+                foundItems.add(item);
+            }
+        }
+
+        // Return the list of matching todoItems
+        return foundItems;
     }
 
     @Override
     public boolean remove(int id) {
-        TodoItem itemToRemove = null;
+       //Iterate
         for (TodoItem item : todoItems) {
             if (item.getId() == id) {
-                itemToRemove = item;
-                break;
+                todoItems.remove(item);
+                return true;
             }
         }
 
-        if (itemToRemove != null) {
-            todoItems.remove(itemToRemove);
-        }
         return false;
     }
 
